@@ -2,18 +2,18 @@
 
 namespace App\Events;
 
+use Thunk\Verbs\Event;
 use App\States\RoundState;
 use App\States\StoryState;
-use Thunk\Verbs\Event;
+use App\Events\Traits\HasStory;
 use Thunk\Verbs\Attributes\Autodiscovery\StateId;
 
 class RoundCreated extends Event
 {
+    use HasStory;
+
     #[StateId(RoundState::class)]
     public ?int $round_id = null;
-
-    #[StateId(StoryState::class)]
-    public int $story_id;
 
     public function applyToStory(StoryState $state)
     {

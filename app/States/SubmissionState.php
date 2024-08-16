@@ -2,6 +2,7 @@
 
 namespace App\States;
 
+use Carbon\Carbon;
 use Thunk\Verbs\State;
 use Illuminate\Support\Collection;
 
@@ -17,11 +18,13 @@ class SubmissionState extends State
 
     public Collection $downvoter_ids;
 
+    public Carbon $created_at;
+
     public string $type;
 
     public string $content;
 
-    public function user()
+    public function author()
     {
         return UserState::load($this->user_id);
     }

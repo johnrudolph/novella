@@ -2,25 +2,23 @@
 
 namespace App\Events;
 
-use App\States\RoundState;
-use App\States\StoryState;
-use App\States\SubmissionState;
 use Thunk\Verbs\Event;
 use App\States\UserState;
+use App\States\RoundState;
+use App\Events\Traits\HasUser;
+use App\Events\Traits\HasRound;
+use App\Events\Traits\HasStory;
+use App\States\SubmissionState;
 use Thunk\Verbs\Attributes\Autodiscovery\StateId;
 
 class SubmissionAdded extends Event
 {
+    use HasUser;
+    use HasRound;
+    use HasStory;
+
     #[StateId(SubmissionState::class)]
     public ?int $submission_id = null;
-
-    #[StateId(RoundState::class)]
-    public int $round_id;
-
-    #[StateId(UserState::class)]
-    public int $user_id;
-
-    public int $story_id;
 
     public string $content;
 
@@ -54,6 +52,8 @@ class SubmissionAdded extends Event
         $state->upvoter_ids = collect();
 
         $state->downvoter_ids = collect();
+
+        $state->created_at = now();
     }
 
     public function applyToRound(RoundState $state)

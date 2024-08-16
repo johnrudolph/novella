@@ -5,16 +5,14 @@ namespace App\Events;
 use Thunk\Verbs\Event;
 use App\States\RoundState;
 use App\States\StoryState;
+use App\Events\Traits\HasRound;
+use App\Events\Traits\HasStory;
 use App\States\SubmissionState;
-use Thunk\Verbs\Attributes\Autodiscovery\StateId;
 
 class RoundEnded extends Event
 {
-    #[StateId(RoundState::class)]
-    public int $round_id;
-
-    #[StateId(StoryState::class)]
-    public int $story_id;
+    use HasStory;
+    use HasRound;
 
     public function validate()
     {

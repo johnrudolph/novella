@@ -2,22 +2,19 @@
 
 namespace App\Events;
 
-use App\States\RoundState;
-use App\States\SubmissionState;
 use Thunk\Verbs\Event;
 use App\States\UserState;
+use App\Events\Traits\HasUser;
+use App\Events\Traits\HasRound;
+use App\States\SubmissionState;
+use App\Events\Traits\HasSubmission;
 use Thunk\Verbs\Attributes\Autodiscovery\StateId;
 
 class SubmissionUpvoted extends Event
 {
-    #[StateId(SubmissionState::class)]
-    public int $submission_id;
-
-    #[StateId(RoundState::class)]
-    public int $round_id;
-
-    #[StateId(UserState::class)]
-    public int $author_id;
+    use HasSubmission;
+    use HasRound;
+    use HasUser;
 
     public int $voter_id;
 

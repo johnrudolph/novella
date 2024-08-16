@@ -15,6 +15,10 @@ class StoryState extends State
 
     public Collection $round_ids;
 
+    public bool $is_public;
+
+    public Collection $user_ids;
+
     public function rounds(): Collection
     {
         return $this->round_ids->map(fn ($id) => RoundState::load($id));

@@ -10,9 +10,17 @@ export default {
     ],
 
     theme: {
+        colors: {
+            'tan': '#E3D4B6',
+            'purple': '#323067',
+            'orange': '#FF5541',
+            'aqua': '#007393',
+            'rouge': '#B30000'
+        },
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                serif: ['Merriweather', ...defaultTheme.fontFamily.serif]
             },
         },
     },
