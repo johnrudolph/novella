@@ -1,6 +1,6 @@
 <div class="">
     <div class="max-w-lg mx-auto">
-        <div class="sticky top-0 py-8 bg-tan">
+        <div class="sticky top-0 py-8 bg-tan z-10">
             <h1 class="text-2xl font-bold">{{ $this->story->title }}</h1>
         </div>
         @foreach ($this->story_state->canon() as $entry)
@@ -27,5 +27,27 @@
                 </div>
             </div>
         @endforeach
+        
+        {{-- text editor --}}
+        <div class="pb-8">
+            <!-- Include stylesheet -->
+            <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+
+            <!-- Create the editor container -->
+            <div id="editor">
+
+            </div>
+
+            <!-- Include the Quill library -->
+            <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+
+            <!-- Initialize Quill editor -->
+            <script>
+                const quill = new Quill('#editor', {
+                    theme: 'snow'
+                });
+            </script>
+        </div>
+
     </div>
 </div>
