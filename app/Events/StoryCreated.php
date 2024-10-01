@@ -6,18 +6,18 @@ use App\Models\Story;
 use Thunk\Verbs\Event;
 use App\States\StoryState;
 use App\Events\Traits\HasUser;
+use App\Events\Traits\HasGuild;
 use Thunk\Verbs\Attributes\Autodiscovery\StateId;
 
 class StoryCreated extends Event
 {
     use HasUser;
+    use HasGuild;
 
     #[StateId(StoryState::class)]
     public ?int $story_id = null;
 
     public string $title;
-
-    public ?bool $is_public = true;
 
     public function applyToStory(StoryState $state)
     {
@@ -25,11 +25,7 @@ class StoryCreated extends Event
         $state->title = $this->title;
         $state->round_ids = collect();
         $state->canonical_submission_ids = collect();
-        $state->is_public = $this->is_public;
-
-        if (! $this->is_public) {
-            $state->user_ids->push($this->user_id);
-        }
+        $state->guild_id = $this->guild_id;
     }
 
     public function fired()
@@ -43,7 +39,7 @@ class StoryCreated extends Event
             'id' => $this->story_id,
             'title' => $this->title,
             'status' => 'in-progress',
-            'is_public' => $this->is_public,
+            'guild_id' => $this->guild_id,
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Events\GuildCreated;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Events\RoundEnded;
@@ -11,6 +12,7 @@ use App\Events\StoryCreated;
 use Thunk\Verbs\Facades\Verbs;
 use App\Events\SubmissionAdded;
 use App\Events\SubmissionUpvoted;
+use App\Events\UserJoinedGuild;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,11 +21,22 @@ class DatabaseSeeder extends Seeder
     {
         Verbs::commitImmediately();
 
+        $guild_id = GuildCreated::fire(
+            name: "Universal Guild",
+            is_open: true,
+            is_public: true,
+        )->guild_id;
+
         $user_id = UserCreated::fire(
             name: 'John Drexler',
             email: 'john@thunk.dev',
             encrypted_password: bcrypt('password'),
         )->user_id;
+
+        UserJoinedGuild::fire(
+            guild_id: $guild_id,
+            user_id: $user_id,
+        );
 
         $john = User::find($user_id);
 
@@ -33,6 +46,11 @@ class DatabaseSeeder extends Seeder
             encrypted_password: bcrypt('password'),
         )->user_id;
 
+        UserJoinedGuild::fire(
+            guild_id: $guild_id,
+            user_id: $user_id,
+        );
+
         $daniel = User::find($user_id);
 
         $user_id = UserCreated::fire(
@@ -41,11 +59,17 @@ class DatabaseSeeder extends Seeder
             encrypted_password: bcrypt('password'),
         )->user_id;
 
+        UserJoinedGuild::fire(
+            guild_id: $guild_id,
+            user_id: $user_id,
+        );
+
         $jacob = User::find($user_id);
 
         $story_id = StoryCreated::fire(
             title: 'Small Tokens',
             user_id: $john->id,
+            guild_id: $guild_id,
         )->story_id;
 
         $story = StoryState::load($story_id);
@@ -61,6 +85,7 @@ class DatabaseSeeder extends Seeder
         RoundEnded::fire(
             story_id: $story_id,
             round_id: $story->currentRound()->id,
+            guild_id: $guild_id,
         );
 
         SubmissionAdded::fire(
@@ -80,6 +105,7 @@ class DatabaseSeeder extends Seeder
         RoundEnded::fire(
             story_id: $story_id,
             round_id: $story->currentRound()->id,
+            guild_id: $guild_id,
         );
 
         SubmissionAdded::fire(
@@ -105,6 +131,7 @@ class DatabaseSeeder extends Seeder
         RoundEnded::fire(
             story_id: $story_id,
             round_id: $story->currentRound()->id,
+            guild_id: $guild_id,
         );
 
         SubmissionAdded::fire(
@@ -136,6 +163,18 @@ class DatabaseSeeder extends Seeder
         RoundEnded::fire(
             story_id: $story_id,
             round_id: $story->currentRound()->id,
+            guild_id: $guild_id,
+        );
+
+        $guild_id = GuildCreated::fire(
+            name: "Inklings",
+            is_open: false,
+            is_public: false,
+        )->guild_id;
+
+        UserJoinedGuild::fire(
+            guild_id: $guild_id,
+            user_id: $john->id,
         );
     }
 }

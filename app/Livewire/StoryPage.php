@@ -19,6 +19,10 @@ class StoryPage extends Component
     public function mount(Story $story)
     {
         $this->story = $story;
+
+        if (! $this->story->is_public) {
+            return redirect('landing-page');
+        }
     }
 
     public function render()

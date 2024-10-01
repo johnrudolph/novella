@@ -23,6 +23,7 @@ class UserCreated extends Event
         $state->name = $this->name;
         $state->clout = 0;
         $state->submission_ids = collect();
+        $state->guild_ids = collect();
     }
 
     public function handle()

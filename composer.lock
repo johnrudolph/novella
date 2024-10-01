@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e7db8fce030562bf216854687fd24d8a",
+    "content-hash": "d4d1e765f0f86e1d7a93125bf96027a7",
     "packages": [
         {
             "name": "brick/math",
@@ -2729,6 +2729,126 @@
             "time": "2024-01-28T23:22:08+00:00"
         },
         {
+            "name": "livewire/flux",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/flux.git",
+                "reference": "8cf8e1612c4a6325510155f5bc5059d560b33228"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire/flux/zipball/8cf8e1612c4a6325510155f5bc5059d560b33228",
+                "reference": "8cf8e1612c4a6325510155f5bc5059d560b33228",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "illuminate/view": "^10.0|^11.0",
+                "laravel/prompts": "^0.1|^0.2",
+                "livewire/livewire": "^3.5",
+                "php": "^8.1",
+                "symfony/console": "^6.0|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Flux\\FluxServiceProvider"
+                    ],
+                    "aliases": {
+                        "Flux": "Flux\\Flux"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Flux\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "The official UI component library for Livewire.",
+            "keywords": [
+                "components",
+                "flux",
+                "laravel",
+                "livewire",
+                "ui"
+            ],
+            "support": {
+                "issues": "https://github.com/livewire/flux/issues",
+                "source": "https://github.com/livewire/flux/tree/v1.0.4"
+            },
+            "time": "2024-09-30T17:21:00+00:00"
+        },
+        {
+            "name": "livewire/flux-pro",
+            "version": "1.0.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.fluxui.dev/download/9d228be3-5eb1-4dca-af87-fd61e4b53e3e/flux-pro-1.0.4.zip",
+                "reference": "62a5dd3d0db7048ae04a91ee9c70c9e8ed8fa242",
+                "shasum": "56ea89acafbb4eed8040b5e6cb643b90138cdd76"
+            },
+            "require": {
+                "illuminate/console": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "illuminate/view": "^10.0|^11.0",
+                "laravel/prompts": "^0.1.24|^0.2",
+                "livewire/flux": "^1.0.4",
+                "livewire/livewire": "^3.5",
+                "php": "^8.1",
+                "symfony/console": "^6.0|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Flux": "FluxPro\\FluxPro"
+                    },
+                    "providers": [
+                        "FluxPro\\FluxProServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "FluxPro\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "The pro version of Flux, the official UI component library for Livewire.",
+            "keywords": [
+                "components",
+                "flux",
+                "laravel",
+                "livewire",
+                "ui"
+            ],
+            "time": "2024-09-30T17:23:35+00:00"
+        },
+        {
             "name": "livewire/livewire",
             "version": "v3.5.4",
             "source": {
@@ -4242,84 +4362,6 @@
             "time": "2024-05-24T10:39:05+00:00"
         },
         {
-            "name": "scrivo/highlight.php",
-            "version": "v9.18.1.10",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/scrivo/highlight.php.git",
-                "reference": "850f4b44697a2552e892ffe71490ba2733c2fc6e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/850f4b44697a2552e892ffe71490ba2733c2fc6e",
-                "reference": "850f4b44697a2552e892ffe71490ba2733c2fc6e",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8|^5.7",
-                "sabberworm/php-css-parser": "^8.3",
-                "symfony/finder": "^2.8|^3.4|^5.4",
-                "symfony/var-dumper": "^2.8|^3.4|^5.4"
-            },
-            "suggest": {
-                "ext-mbstring": "Allows highlighting code with unicode characters and supports language with unicode keywords"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "HighlightUtilities/functions.php"
-                ],
-                "psr-0": {
-                    "Highlight\\": "",
-                    "HighlightUtilities\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Geert Bergman",
-                    "homepage": "http://www.scrivo.org/",
-                    "role": "Project Author"
-                },
-                {
-                    "name": "Vladimir Jimenez",
-                    "homepage": "https://allejo.io",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Martin Folkers",
-                    "homepage": "https://twobrain.io",
-                    "role": "Contributor"
-                }
-            ],
-            "description": "Server side syntax highlighter that supports 185 languages. It's a PHP port of highlight.js",
-            "keywords": [
-                "code",
-                "highlight",
-                "highlight.js",
-                "highlight.php",
-                "syntax"
-            ],
-            "support": {
-                "issues": "https://github.com/scrivo/highlight.php/issues",
-                "source": "https://github.com/scrivo/highlight.php"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/allejo",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-12-17T21:53:22+00:00"
-        },
-        {
             "name": "seld/jsonlint",
             "version": "1.11.0",
             "source": {
@@ -4551,70 +4593,6 @@
                 }
             ],
             "time": "2024-03-20T07:29:11+00:00"
-        },
-        {
-            "name": "spatie/shiki-php",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/shiki-php.git",
-                "reference": "b4bd54222c40b44800aabce0a4382e0c463b5901"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/shiki-php/zipball/b4bd54222c40b44800aabce0a4382e0c463b5901",
-                "reference": "b4bd54222c40b44800aabce0a4382e0c463b5901",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.4|^8.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^v3.0",
-                "pestphp/pest": "^1.8",
-                "phpunit/phpunit": "^9.5",
-                "spatie/pest-plugin-snapshots": "^1.1",
-                "spatie/ray": "^1.10"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\ShikiPhp\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rias Van der Veken",
-                    "email": "rias@spatie.be",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Highlight code using Shiki in PHP",
-            "homepage": "https://github.com/spatie/shiki-php",
-            "keywords": [
-                "shiki",
-                "spatie"
-            ],
-            "support": {
-                "source": "https://github.com/spatie/shiki-php/tree/2.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/spatie",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-02-19T09:00:59+00:00"
         },
         {
             "name": "symfony/clock",
@@ -7525,75 +7503,6 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.2.7"
             },
             "time": "2023-12-08T13:03:43+00:00"
-        },
-        {
-            "name": "ueberdosis/tiptap-php",
-            "version": "1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ueberdosis/tiptap-php.git",
-                "reference": "640667176da4cdfaa84c32093171e0674c3c807f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ueberdosis/tiptap-php/zipball/640667176da4cdfaa84c32093171e0674c3c807f",
-                "reference": "640667176da4cdfaa84c32093171e0674c3c807f",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0",
-                "scrivo/highlight.php": "^9.18",
-                "spatie/shiki-php": "^2.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.5",
-                "pestphp/pest": "^1.21",
-                "phpunit/phpunit": "^9.5",
-                "vimeo/psalm": "^4.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Tiptap\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Hans Pagel",
-                    "email": "humans@tiptap.dev",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A PHP package to work with Tiptap output",
-            "homepage": "https://github.com/ueberdosis/tiptap-php",
-            "keywords": [
-                "prosemirror",
-                "tiptap",
-                "ueberdosis"
-            ],
-            "support": {
-                "issues": "https://github.com/ueberdosis/tiptap-php/issues",
-                "source": "https://github.com/ueberdosis/tiptap-php/tree/1.4.0"
-            },
-            "funding": [
-                {
-                    "url": "https://tiptap.dev/pricing",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/ueberdosis",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/tiptap",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2024-08-12T08:25:45+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

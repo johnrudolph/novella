@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'current_guild_id'
     ];
 
     /**
@@ -46,5 +47,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function guilds()
+    {
+        return $this->belongsToMany(Guild::class, 'guild_users');
     }
 }

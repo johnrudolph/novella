@@ -11,6 +11,8 @@ class StoryState extends State
 
     public string $status;
 
+    public int $guild_id;
+
     public Collection $canonical_submission_ids;
 
     public Collection $round_ids;
@@ -18,6 +20,11 @@ class StoryState extends State
     public bool $is_public;
 
     public Collection $user_ids;
+
+    public function guild(): GuildState
+    {
+        return GuildState::load($this->guild_id);
+    }
 
     public function rounds(): Collection
     {

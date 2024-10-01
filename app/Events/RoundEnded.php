@@ -5,6 +5,7 @@ namespace App\Events;
 use Thunk\Verbs\Event;
 use App\States\RoundState;
 use App\States\StoryState;
+use App\Events\Traits\HasGuild;
 use App\Events\Traits\HasRound;
 use App\Events\Traits\HasStory;
 use App\States\SubmissionState;
@@ -13,6 +14,7 @@ class RoundEnded extends Event
 {
     use HasStory;
     use HasRound;
+    use HasGuild;
 
     public function validate()
     {
@@ -39,7 +41,8 @@ class RoundEnded extends Event
         if ($last_entry->type === 'new_story') {
             StoryCreated::fire(
                 user_id: $last_entry->user_id,
-                title: $last_entry->content
+                title: $last_entry->content,
+                guild_id: $this->guild_id,
             );
 
             return;
