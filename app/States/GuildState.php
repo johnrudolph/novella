@@ -10,6 +10,8 @@ class GuildState extends State
 {
     public string $name;
 
+    public string $motto;
+
     public Collection $user_ids;
 
     public Collection $admin_ids;

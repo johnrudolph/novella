@@ -12,11 +12,9 @@ class SubmissionState extends State
 
     public int $story_id;
 
-    public int $score = 0;
+    public int $applause = 0;
 
     public Collection $upvoter_ids;
-
-    public Collection $downvoter_ids;
 
     public Carbon $created_at;
 
@@ -32,18 +30,5 @@ class SubmissionState extends State
     public function story()
     {
         return StoryState::load($this->story_id);
-    }
-
-    public function existingVoteForUserId(int $user_id): ?string
-    {
-        if ($this->upvoter_ids->contains($user_id)) {
-            return 'upvote';
-        }
-
-        if ($this->downvoter_ids->contains($user_id)) {
-            return 'downvote';
-        }
-
-        return null;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Round;
 use Thunk\Verbs\Event;
 use App\States\RoundState;
 use App\States\StoryState;
@@ -25,5 +26,14 @@ class RoundCreated extends Event
         $state->story_id = $this->story_id;
         $state->status = 'in-progress';
         $state->submission_ids = collect();
+    }
+
+    public function handle()
+    {
+        Round::create([
+            'id' => $this->round_id,
+            'story_id' => $this->story_id,
+            'status' => 'in-progress',
+        ]);
     }
 }

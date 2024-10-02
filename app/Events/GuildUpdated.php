@@ -2,15 +2,14 @@
 
 namespace App\Events;
 
+use App\Events\Traits\HasGuild;
 use App\Models\Guild;
 use App\States\GuildState;
 use Thunk\Verbs\Event;
-use Thunk\Verbs\Attributes\Autodiscovery\StateId;
 
-class GuildCreated extends Event
+class GuildUpdated extends Event
 {
-    #[StateId(GuildState::class)]
-    public ?int $guild_id = null;
+    use HasGuild;
 
     public string $name;
 
@@ -23,9 +22,6 @@ class GuildCreated extends Event
     public function apply(GuildState $state)
     {
         $state->name = $this->name;
-        $state->user_ids = collect();
-        $state->admin_ids = collect();
-        $state->submission_ids = collect();
         $state->is_public = $this->is_public;
         $state->is_open = $this->is_open;
         $state->motto = $this->motto;
@@ -33,8 +29,7 @@ class GuildCreated extends Event
 
     public function handle()
     {
-        Guild::create([
-            'id' => $this->guild_id,
+        Guild::find($this->guild_id)->update([
             'name' => $this->name,
             'is_public' => $this->is_public,
             'is_open' => $this->is_open,

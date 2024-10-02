@@ -13,6 +13,7 @@ use Thunk\Verbs\Facades\Verbs;
 use App\Events\SubmissionAdded;
 use App\Events\SubmissionUpvoted;
 use App\Events\UserJoinedGuild;
+use App\Events\UserPromotedToGuildAdmin;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
 
         $guild_id = GuildCreated::fire(
             name: "Universal Guild",
+            motto: "One for all, and all for one.",
             is_open: true,
             is_public: true,
         )->guild_id;
@@ -34,6 +36,11 @@ class DatabaseSeeder extends Seeder
         )->user_id;
 
         UserJoinedGuild::fire(
+            guild_id: $guild_id,
+            user_id: $user_id,
+        );
+
+        UserPromotedToGuildAdmin::fire(
             guild_id: $guild_id,
             user_id: $user_id,
         );
@@ -168,11 +175,17 @@ class DatabaseSeeder extends Seeder
 
         $guild_id = GuildCreated::fire(
             name: "Inklings",
+            motto: "Democracy dies in darkness.",
             is_open: false,
             is_public: false,
         )->guild_id;
 
         UserJoinedGuild::fire(
+            guild_id: $guild_id,
+            user_id: $john->id,
+        );
+
+        UserPromotedToGuildAdmin::fire(
             guild_id: $guild_id,
             user_id: $john->id,
         );

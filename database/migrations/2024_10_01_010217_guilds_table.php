@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('guilds', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('motto');
             $table->boolean('is_public');
             $table->boolean('is_open');
             $table->timestamps();

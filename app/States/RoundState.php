@@ -25,6 +25,6 @@ class RoundState extends State
 
     public function winner(): ?SubmissionState
     {
-        return $this->submissions()->sortByDesc('score')->first();
+        return $this->submissions()->sortByDesc('applause')->first();
     }
 }

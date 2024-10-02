@@ -8,7 +8,6 @@ use App\Events\Traits\HasUser;
 use App\Events\Traits\HasRound;
 use App\States\SubmissionState;
 use App\Events\Traits\HasSubmission;
-use Thunk\Verbs\Attributes\Autodiscovery\StateId;
 
 class SubmissionUpvoted extends Event
 {
@@ -22,11 +21,22 @@ class SubmissionUpvoted extends Event
 
     public function applyToUser(UserState $state)
     {
-        $state->clout += 1;
+        $state->applause += 1;
     }
 
     public function applyToSubmission(SubmissionState $state)
     {
-        $state->score += 1;
+        $state->applause += 1;
+    }
+
+    public function handle()
+    {
+        $this->userModel()->update([
+            'applause' => $this->user()->applause,
+        ]);
+
+        $this->submissionModel()->update([
+            'applause' => $this->submission()->applause,
+        ]);
     }
 }

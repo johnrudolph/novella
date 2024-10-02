@@ -10,7 +10,7 @@ class UserState extends State
 {
     public string $name;
 
-    public int $clout;
+    public int $applause;
 
     public Collection $submission_ids;
 

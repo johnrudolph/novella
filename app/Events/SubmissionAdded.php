@@ -4,6 +4,7 @@ namespace App\Events;
 
 use Thunk\Verbs\Event;
 use App\States\UserState;
+use App\Models\Submission;
 use App\States\RoundState;
 use App\Events\Traits\HasUser;
 use App\Events\Traits\HasRound;
@@ -47,11 +48,9 @@ class SubmissionAdded extends Event
 
         $state->content = $this->content;
 
-        $state->score = 0;
+        $state->applause = 0;
 
         $state->upvoter_ids = collect();
-
-        $state->downvoter_ids = collect();
 
         $state->created_at = now();
     }
@@ -59,5 +58,17 @@ class SubmissionAdded extends Event
     public function applyToRound(RoundState $state)
     {
         $state->submission_ids->push($this->submission_id);
+    }
+
+    public function handle()
+    {
+        Submission::create([
+            'user_id' => $this->user_id,
+            'story_id' => $this->story_id,
+            'round_id' => $this->round_id,
+            'id' => $this->submission_id,
+            'type' => $this->type,
+            'content' => $this->content,
+        ]);
     }
 }

@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\States\StoryState;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Glhd\Bits\Database\HasSnowflakes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Story extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSnowflakes;
 
     protected $guarded = [];
 
@@ -20,5 +21,10 @@ class Story extends Model
     public function guild()
     {
         return $this->belongsTo(Guild::class);
+    }
+
+    public function rounds()
+    {
+        return $this->hasMany(Round::class);
     }
 }

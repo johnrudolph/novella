@@ -1,5 +1,5 @@
 <div>
-    <flux:heading size="xl" level="1">Good afternoon, Olivia</flux:heading>
+    <flux:heading size="xl" level="1">Let's write</flux:heading>
 
     <flux:subheading size="lg" class="mb-6">Here's what's new today</flux:subheading>
 

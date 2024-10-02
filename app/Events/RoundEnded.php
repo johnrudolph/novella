@@ -48,6 +48,14 @@ class RoundEnded extends Event
             return;
         }
 
+        // @todo just do this in the command when we end a round??
         RoundCreated::fire(story_id: $this->story_id);
+    }
+
+    public function handle()
+    {
+        $this->roundModel()->update([
+            'status' => 'complete',
+        ]);
     }
 }
