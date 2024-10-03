@@ -2,12 +2,15 @@
 
 namespace App\Livewire;
 
+use Flux\Flux;
 use App\Models\Guild;
 use Livewire\Component;
 use App\States\GuildState;
 use App\Events\GuildUpdated;
+use App\Events\StoryCreated;
 use Thunk\Verbs\Facades\Verbs;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
 
 class GuildPage extends Component
@@ -20,8 +23,12 @@ class GuildPage extends Component
 
     public bool $is_open;
 
+    #[Validate('required', message: 'Please provide a name')]
+    #[Validate('max:40', message: 'The name must be less than 40 characters')]
     public string $name;
 
+    #[Validate('required', message: 'Please provide a motto')]
+    #[Validate('max:250', message: 'The motto must be less than 250 characters')]
     public string $motto;
 
     #[Computed]
@@ -71,6 +78,8 @@ class GuildPage extends Component
 
     public function updateGuild()
     {
+        $this->validate();
+
         GuildUpdated::fire(
             guild_id: $this->guild->id,
             name: $this->name,
@@ -82,6 +91,21 @@ class GuildPage extends Component
         Verbs::commit();
 
         $this->guild->refresh();
+
+        Flux::toast('Your changes have been saved.');
+    }
+
+    public function createFirstStory()
+    {
+        $story_id = StoryCreated::fire(
+            guild_id: $this->guild->id,
+            user_id: $this->user->id,
+            title: $this->first_story_title,
+        )->story_id;
+
+        Verbs::commit();
+
+        $this->redirect(route('story.show', $story_id));
     }
 
     public function render()

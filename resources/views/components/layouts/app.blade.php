@@ -25,6 +25,7 @@
                     @foreach($guilds as $guild)
                         <flux:navlist.item href="{{ route('guild.show', $guild) }}">{{ $guild->name }}</flux:navlist.item>
                     @endforeach
+                    <flux:navlist.item href="{{ route('guild.create') }}" icon="plus">Create Guild</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
