@@ -95,19 +95,6 @@ class GuildPage extends Component
         Flux::toast('Your changes have been saved.');
     }
 
-    public function createFirstStory()
-    {
-        $story_id = StoryCreated::fire(
-            guild_id: $this->guild->id,
-            user_id: $this->user->id,
-            title: $this->first_story_title,
-        )->story_id;
-
-        Verbs::commit();
-
-        $this->redirect(route('story.show', $story_id));
-    }
-
     public function render()
     {
         return view('livewire.guild-page');

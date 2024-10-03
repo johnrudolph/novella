@@ -14,27 +14,25 @@
 
         <flux:tab.panel name="stories">
             @if($this->stories->count() === 0)
-                <a href="route">
+                <a href="{{ route('story.create', $this->guild) }}">
                     <flux:card class="border-dashed border-2 px-16 w-64">
                         <flux:subheading>Create first story</flux:subheading>
                     </flux:card>
                 </a>
             @else
                 @foreach($this->stories as $story) 
-                    <flux:card>
-                        <div class="flex justify-between items-center">
-                            <flux:heading size="lg">{{ $story->title }}</flux:heading>
-                            @if($story->status === 'in-progress')
-                                <flux:badge color="green">In progress</flux:badge>
-                            @elseif($story->status === 'complete')
-                                <flux:badge color="zinc">Complete</flux:badge>
-                            @endif
-                        </div>
-
-                        <flux:subheading class="mb-4">
-                            <p></p>
-                        </flux:subheading>
-                    </flux:card>
+                    <a href="{{ route('story.show', ['guild' => $this->guild->id, 'story' => $story->id]) }}">
+                        <flux:card>
+                            <div class="flex justify-between items-center">
+                                <flux:heading size="lg">{{ $story->title }}</flux:heading>
+                                @if($story->status === 'in-progress')
+                                    <flux:badge color="green">In progress</flux:badge>
+                                @elseif($story->status === 'complete')
+                                    <flux:badge color="zinc">Complete</flux:badge>
+                                @endif
+                            </div>
+                        </flux:card>
+                    </a>
                 @endforeach
             @endif
         </flux:tab.panel>
