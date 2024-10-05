@@ -27,4 +27,9 @@ class Story extends Model
     {
         return $this->hasMany(Round::class);
     }
+
+    public function currentRound()
+    {
+        return $this->rounds->last();
+    }
 }

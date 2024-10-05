@@ -25,6 +25,8 @@ class SubmissionAdded extends Event
 
     public string $type;
 
+    public ?string $content_formatted = null;
+
     public function validate()
     {
         $this->assert(
@@ -40,13 +42,18 @@ class SubmissionAdded extends Event
 
     public function applyToSubmission(SubmissionState $state)
     {
+        $this->content_formatted = preg_replace('/(<\/br>)(?!<\/br>)/', '</br> </br>', $this->content);
+        $this->content_formatted = preg_replace('/(<\/br>\s*){3,}/', '</br> </br>', $this->content_formatted);
+        $this->content_formatted = trim($this->content_formatted);
+        $this->content_formatted = preg_replace('/\s+/', ' ', $this->content_formatted);
+
+        $state->content = $this->content_formatted;
+
         $state->user_id = $this->user_id;
 
         $state->story_id = $this->story_id;
 
         $state->type = $this->type;
-
-        $state->content = $this->content;
 
         $state->applause = 0;
 
@@ -68,7 +75,7 @@ class SubmissionAdded extends Event
             'round_id' => $this->round_id,
             'id' => $this->submission_id,
             'type' => $this->type,
-            'content' => $this->content,
+            'content' => $this->content_formatted,
         ]);
     }
 }

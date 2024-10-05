@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\Models\User;
 use App\Models\Guild;
+use App\Models\Story;
 use Thunk\Verbs\Facades\Verbs;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -20,6 +21,8 @@ abstract class TestCase extends BaseTestCase
 
     public Guild $private_guild;
 
+    public Story $universal_story;
+
     public function runSeeder()
     {
         Verbs::commitImmediately();
@@ -32,5 +35,6 @@ abstract class TestCase extends BaseTestCase
         $this->daniel = User::firstWhere('email', "daniel@thunk.dev");
         $this->universal_guild = Guild::firstWhere('name', 'Universal Guild');
         $this->private_guild = Guild::firstWhere('name', "Inklings");
+        $this->universal_story = $this->universal_guild->stories->first();
     }
 }
