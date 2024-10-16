@@ -39,7 +39,8 @@ class StoryPage extends Component
     #[Computed]
     public function allSubmissions()
     {
-        return $this->round->submissions;
+        return $this->round->submissions
+            ->sortByDesc(fn($s) => $s->applause);
     }
 
     #[Computed]

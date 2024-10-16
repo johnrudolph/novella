@@ -173,6 +173,36 @@ class DatabaseSeeder extends Seeder
             guild_id: $guild_id,
         );
 
+        SubmissionAdded::fire(
+            user_id: $daniel->id,
+            story_id: $story_id,
+            round_id: $story->currentRound()->id,
+            type: 'paragraph', 
+            content: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consequat, massa sit amet tincidunt facilisis, erat dolor ornare neque, a mollis mauris libero id leo. Aenean bibendum aliquet facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae dapibus tellus. Phasellus vel ligula vitae odio lobortis euismod interdum eget odio. Nullam ut convallis dui. Quisque et scelerisque mauris, et bibendum felis. Donec blandit, purus in suscipit rhoncus, augue magna dictum ante, ultricies convallis felis tortor vestibulum eros. Vestibulum libero dui, viverra a vulputate sit amet, rhoncus non turpis. Duis gravida sem et gravida auctor. Phasellus vitae purus varius, efficitur enim vitae, dapibus tellus. Etiam non turpis suscipit, commodo nisi id, tristique sapien. </br> Cras facilisis justo ut diam imperdiet feugiat. Mauris commodo nisl ac elit hendrerit viverra. Etiam malesuada nibh eget nisi consequat semper. Etiam porttitor euismod ullamcorper. Duis quis risus facilisis, semper lorem at, pulvinar lorem. Aenean pharetra aliquet lorem at elementum. Fusce maximus enim diam, at cursus sem ornare ut. Proin ut ex mattis, maximus augue vitae, facilisis velit. In hac habitasse platea dictumst. Vivamus ac magna at magna mollis lacinia. Etiam eget lacinia dolor. Fusce nisi turpis, vestibulum ac nulla et, semper dignissim odio. Proin mollis augue ut augue convallis porta. Pellentesque tincidunt aliquam nibh. Suspendisse potenti. Praesent sagittis erat magna, in eleifend nisl blandit quis.</p>',
+        );
+
+        SubmissionAdded::fire(
+            user_id: $john->id,
+            story_id: $story_id,
+            round_id: $story->currentRound()->id,
+            type: 'new_chapter', 
+            content: 'Tokens galore!',
+        );
+
+        SubmissionAdded::fire(
+            user_id: $jacob->id,
+            story_id: $story_id,
+            round_id: $story->currentRound()->id,
+            type: 'new_story', 
+            content: 'Ironed flats',
+        );
+
+        SubmissionUpvoted::fire(
+            user_id: $john->id,
+            round_id: $story->currentRound()->id,
+            submission_id: $story->currentRound()->submissions()->last()->id,
+        );
+
         $guild_id = GuildCreated::fire(
             name: "Inklings",
             motto: "Democracy dies in darkness.",
